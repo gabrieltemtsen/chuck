@@ -1,5 +1,5 @@
 import { TwitterApi } from "twitter-api-v2";
-import { getEnv } from "./env";
+import { getEnv } from "./env.js";
 
 export function getXClient() {
   const env = getEnv();

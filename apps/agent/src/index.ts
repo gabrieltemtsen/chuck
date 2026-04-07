@@ -1,6 +1,6 @@
 import { ensureSettings, enqueuePost, logAction } from "@chuck/db";
-import { getEnv } from "./env";
-import { runAutopilotTick } from "./autopilot";
+import { getEnv } from "./env.js";
+import { runAutopilotTick } from "./autopilot.js";
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
