@@ -30,3 +30,27 @@ export async function logAction(args: {
     },
   });
 }
+
+export async function enqueuePost(args: { scheduledAt: Date; text: string }) {
+  const db = getPrisma();
+  return db.post.create({ data: { scheduledAt: args.scheduledAt, text: args.text } });
+}
+
+export async function listQueuedPosts(now = new Date()) {
+  const db = getPrisma();
+  return db.post.findMany({
+    where: { status: "queued", scheduledAt: { lte: now } },
+    orderBy: { scheduledAt: "asc" },
+    take: 5,
+  });
+}
+
+export async function markPostSent(id: string, xTweetId: string) {
+  const db = getPrisma();
+  return db.post.update({ where: { id }, data: { status: "sent", xTweetId } });
+}
+
+export async function markPostFailed(id: string, err: string) {
+  const db = getPrisma();
+  return db.post.update({ where: { id }, data: { status: "failed", lastError: err } });
+}

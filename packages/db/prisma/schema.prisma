@@ -43,3 +43,19 @@ model ActionLog {
   message   String
   meta      Json?
 }
+
+enum PostStatus {
+  queued
+  sent
+  failed
+}
+
+model Post {
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now())
+  scheduledAt DateTime
+  text        String
+  status      PostStatus @default(queued)
+  xTweetId    String?
+  lastError   String?
+}
