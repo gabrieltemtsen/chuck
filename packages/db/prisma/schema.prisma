@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ActionType {
+  x_post
+  x_reply
+  opportunity_found
+  trade_paper_open
+  trade_paper_close
+  system
+}
+
+enum ActionStatus {
+  success
+  error
+  skipped
+}
+
+enum AgentRunState {
+  running
+  paused
+}
+
+model Settings {
+  id            String        @id @default("singleton")
+  xAuthMode     String        @default("keys")
+  autopilotState AgentRunState @default(running)
+  xDryRun       Boolean       @default(false)
+  updatedAt     DateTime      @updatedAt
+}
+
+model ActionLog {
+  id        String       @id @default(cuid())
+  createdAt DateTime     @default(now())
+  type      ActionType
+  status    ActionStatus
+  message   String
+  meta      Json?
+}

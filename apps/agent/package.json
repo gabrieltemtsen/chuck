@@ -1,0 +1,21 @@
+{
+  "name": "@chuck/agent",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@chuck/db": "*",
+    "@chuck/shared": "*",
+    "twitter-api-v2": "^1.18.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "typescript": "^6.0.0"
+  }
+}
