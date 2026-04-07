@@ -11,6 +11,7 @@ const Env = z.object({
 
   // Behavior
   X_DRY_RUN: z.string().optional(),
+  SEED_POST_ON_BOOT: z.string().optional(),
 });
 
 export function getEnv() {
@@ -23,5 +24,6 @@ export function getEnv() {
   return {
     ...parsed.data,
     X_DRY_RUN: parsed.data.X_DRY_RUN === "true" || parsed.data.X_DRY_RUN === "1",
+    SEED_POST_ON_BOOT: parsed.data.SEED_POST_ON_BOOT === "true" || parsed.data.SEED_POST_ON_BOOT === "1",
   };
 }

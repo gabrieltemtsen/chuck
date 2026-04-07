@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "dev": "npm -w @chuck/dashboard run dev",
-    "build": "npm run build -ws",
+    "build": "npm -w @chuck/shared run build && npm -w @chuck/db run build && npm -w @chuck/agent run build && npm -w @chuck/dashboard run build",
     "lint": "npm run lint -ws"
   },
   "engines": {
