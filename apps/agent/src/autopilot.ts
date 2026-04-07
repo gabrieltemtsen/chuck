@@ -1,5 +1,5 @@
 import { ensureSettings, listQueuedPosts, logAction, markPostFailed, markPostSent } from "@chuck/db";
-import { postTweet } from "./x";
+import { postTweet } from "./x.js";
 
 export async function runAutopilotTick() {
   const settings = await ensureSettings();
